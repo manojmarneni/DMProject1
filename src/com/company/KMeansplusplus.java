@@ -1,5 +1,7 @@
 package com.company;
 
+import com.company.algo.Clustering;
+
 import java.io.IOException;
 import java.util.ArrayList;
 import java.util.Arrays;
@@ -25,8 +27,7 @@ public class KMeansplusplus {
 
     static double getMeanCost(List<Point> pointList) {
         List<Point> centers = getKMeansCenters(pointList);
-        double meanCost = Main.get4MinCost(pointList, centers);
-        return meanCost;
+        return Main.get4MinCost(pointList, centers);
     }
 
     static List<Point> getKMeansCenters(List<Point> pointList) {
@@ -41,7 +42,7 @@ public class KMeansplusplus {
         for (int k = 1; k < 4; k++) {
             double[] probs = new double[pointList.size()];
             for (int i = 0; i < pointList.size(); i++) {
-                double closestCenterDistance = Main.getClosestCenterDistance(centers, pointList.get(i));
+                double closestCenterDistance = Clustering.getClosestCenterDistance(centers, pointList.get(i));
                 probs[i] = closestCenterDistance * closestCenterDistance;
                 total += probs[i];
             }
