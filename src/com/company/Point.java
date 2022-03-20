@@ -1,53 +1,26 @@
 package com.company;
 
+import java.util.Arrays;
+
 public class Point {
 
-    double x;
-    double y;
-    double prob;
+    double[] vector;
 
-    @Override
-    public boolean equals(Object o) {
-        if (this == o) return true;
-        if (!(o instanceof Point)) return false;
 
-        Point point = (Point) o;
+    public Point(double[] vector) {
+        this.vector = vector;
+    }
 
-        if (Double.compare(point.x, x) != 0) return false;
-        return Double.compare(point.y, y) == 0;
+    public double distance (Point other) {
+        int dist  = 0;
+        for(int i = 0; i< this.vector.length; i++){
+            dist += (other.vector[i] - this.vector[i]) * (other.vector[i] - this.vector[i]);
+        }
+        return Math.sqrt(dist);
     }
 
     @Override
     public String toString() {
-        return "('" + x +
-                "','" + y +"')";
+        return Arrays.toString(this.vector);
     }
-
-    @Override
-    public int hashCode() {
-        int result;
-        long temp;
-        temp = Double.doubleToLongBits(x);
-        result = (int) (temp ^ (temp >>> 32));
-        temp = Double.doubleToLongBits(y);
-        result = 31 * result + (int) (temp ^ (temp >>> 32));
-        return result;
-    }
-
-    public Point(double x, double y) {
-        this.x = x;
-        this.y = y;
-    }
-
-    public Point() {
-    }
-
-    double distance (Point other) {
-        Point result = new Point();
-        result.y = Math.abs (y - other.y);
-        result.x = Math.abs (x- other.x);
-        return Math.sqrt((result.y)*(result.y) +(result.x)*(result.x));
-    }
-
-
 }
