@@ -5,13 +5,12 @@ import com.company.util.Parser;
 
 import java.io.IOException;
 import java.util.ArrayList;
-import java.util.Arrays;
 import java.util.List;
 import java.util.Random;
 
 public class KMeansplusplus {
 
-    public static final int NUMBER_OF_TRIALS = 20;
+    public static final int NUMBER_OF_TRIALS = 1;
 
     public static void main(String[] args) throws IOException {
         List<Point> pointList = Parser.getPoints();
@@ -19,19 +18,21 @@ public class KMeansplusplus {
         double[] cost = new double[NUMBER_OF_TRIALS];
 
         for (int i = 0; i < NUMBER_OF_TRIALS; i++) {
-            cost[i] = getMeanCost(pointList);
+            cost[i] = getMeanCost(pointList, 10);
         }
 
-        System.out.println(Arrays.toString(cost));
+//        System.out.println(Arrays.toString(cost));
 
     }
 
-    static double getMeanCost(List<Point> pointList) {
-        List<Point> centers = getKMeansCenters(pointList);
+    static double getMeanCost(List<Point> pointList, int numberOfCenters) {
+        List<Point> centers = getKMeansCenters(pointList, numberOfCenters);
+        List<List<Point>> clusters = Clustering.getClusters(pointList, centers);
+        Clustering.printCluster(clusters);
         return Main.get4MinCost(pointList, centers);
     }
 
-    static List<Point> getKMeansCenters(List<Point> pointList) {
+    static List<Point> getKMeansCenters(List<Point> pointList, int numberOfCenters) {
         Random random = new Random();
         int c1 = random.nextInt(pointList.size());
 
@@ -40,7 +41,7 @@ public class KMeansplusplus {
         pointList.remove(c1);
 
         double total  = 0;
-        for (int k = 1; k < 4; k++) {
+        for (int k = 1; k < numberOfCenters; k++) {
             double[] probs = new double[pointList.size()];
             for (int i = 0; i < pointList.size(); i++) {
                 double closestCenterDistance = Clustering.getClosestCenterDistance(centers, pointList.get(i));

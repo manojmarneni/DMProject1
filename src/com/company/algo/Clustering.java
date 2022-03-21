@@ -36,4 +36,14 @@ public class Clustering {
         }
         return minDistSoFar;
     }
+
+    public static void printCluster(List<List<Point>> clusters) {
+        for (List<Point> cluster : clusters) {
+            System.out.println("----- ");
+            for (Point point : cluster) {
+                System.out.println(point.getExpectedClusterId());
+            }
+            System.out.println("----- ");
+        }
+    }
 }

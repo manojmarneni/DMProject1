@@ -11,7 +11,7 @@ import java.util.List;
 
 public class Parser {
 
-    public static final String DEFAULT_FILE_LOCATION = "";
+    public static final String DEFAULT_FILE_LOCATION = "/Users/u1320407/IdeaProjects/clustering-assignment/pysrc/formatted_resume_data.csv";
 
     public static List<Point> getPoints() throws IOException {
         return getPoints(DEFAULT_FILE_LOCATION);
@@ -50,10 +50,11 @@ public class Parser {
     private static Point getPoint(String str, Vocabulary vocabulary) {
         double[] vector = new double[vocabulary.getNumberOfWords()];
         Point p = new Point(vector);
-        String[] st = str.split(" ");
+        String[] st = str.split(",");
         p.setExpectedClusterId(st[0]);
 
-        for (int i = 1; i < st.length; i++) {
+        st = st[1].split(" ");
+        for (int i = 0; i < st.length; i++) {
             vector[vocabulary.getWordIndex().get(st[i])] += 1;
         }
         return p;
@@ -64,7 +65,7 @@ public class Parser {
 
         int i = 0;
         for (String record : strings) {
-            for (String str : record.split(" ")) {
+            for (String str : record.split(",")[1].split(" ")) {
                 if (!vocabulary.getWordIndex().containsKey(str)) {
                     vocabulary.getWordIndex().put(str, i++);
                 }

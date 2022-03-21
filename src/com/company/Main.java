@@ -14,7 +14,7 @@ import java.util.List;
 
 public class Main {
 
-    public static final int NUMBER_OF_CLUSTERS = 4;
+    public static final int NUMBER_OF_CLUSTERS = 10;
 
     public static void main(String[] args) throws IOException {
 
@@ -25,7 +25,7 @@ public class Main {
 
         List<List<Point>> clusters = Clustering.getClusters(pointList, centers);
 
-        //TODO print clusters and validate
+        Clustering.printCluster(clusters);
 
         double cost = get4MinCost(pointList, centers);
         System.out.println("Cost of clusters = " + cost);
