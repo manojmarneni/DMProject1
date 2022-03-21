@@ -1,6 +1,7 @@
 package com.company;
 
 import com.company.algo.Clustering;
+import com.company.util.Parser;
 
 import java.io.IOException;
 import java.util.ArrayList;
@@ -13,7 +14,7 @@ public class KMeansplusplus {
     public static final int NUMBER_OF_TRIALS = 20;
 
     public static void main(String[] args) throws IOException {
-        List<Point> pointList = Main.readFile();
+        List<Point> pointList = Parser.getPoints();
 
         double[] cost = new double[NUMBER_OF_TRIALS];
 

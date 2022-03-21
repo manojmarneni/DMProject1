@@ -2,6 +2,7 @@ package com.company;
 
 import com.company.algo.Clustering;
 import com.company.algo.Gonzalez;
+import com.company.util.Parser;
 
 import java.io.IOException;
 import java.util.ArrayList;
@@ -14,7 +15,7 @@ public class llyod {
 
     public static void main(String[] args) throws IOException {
 
-        List<Point> pointList = Main.readFile();
+        List<Point> pointList = Parser.getPoints();
 
         //1st 4 points as centers
         List<Point> initalCenters = new ArrayList<>();
