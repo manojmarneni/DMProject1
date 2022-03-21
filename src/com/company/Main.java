@@ -3,7 +3,10 @@ package com.company;
 
 import com.company.algo.Clustering;
 import com.company.algo.Gonzalez;
+import com.company.util.Parser;
 
+import java.io.BufferedReader;
+import java.io.FileReader;
 import java.io.IOException;
 import java.util.ArrayList;
 import java.util.List;
@@ -16,7 +19,7 @@ public class Main {
     public static void main(String[] args) throws IOException {
 
         //read into List of points
-        List<Point> pointList = readFile();
+        List<Point> pointList = Parser.getPoints();
 
         List<Point> centers = Gonzalez.getCenters(pointList, NUMBER_OF_CLUSTERS);
 
@@ -44,16 +47,4 @@ public class Main {
         return mean4Cost;
     }
 
-    static void printPoints(List<List<Point>> clusters) {
-        int k = 0;
-        System.out.println("Print points");
-    }
-
-    static List<Point> readFile() throws IOException {
-        List<Point> list = new ArrayList<>();
-        //TODO Read all files in folder
-        //Generate Vocabulary
-        //Generate Vectors
-        return list;
-    }
 }

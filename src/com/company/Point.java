@@ -4,6 +4,8 @@ import java.util.Arrays;
 
 public class Point {
 
+    String Id;
+    String expectedClusterId;
     double[] vector;
 
 
@@ -22,5 +24,29 @@ public class Point {
     @Override
     public String toString() {
         return Arrays.toString(this.vector);
+    }
+
+    public String getId() {
+        return Id;
+    }
+
+    public void setId(String id) {
+        Id = id;
+    }
+
+    public String getExpectedClusterId() {
+        return expectedClusterId;
+    }
+
+    public void setExpectedClusterId(String expectedClusterId) {
+        this.expectedClusterId = expectedClusterId;
+    }
+
+    public double[] getVector() {
+        return vector;
+    }
+
+    public void setVector(double[] vector) {
+        this.vector = vector;
     }
 }
